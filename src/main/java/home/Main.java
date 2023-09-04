@@ -14,6 +14,8 @@ public class Main {
    *   <li>The digits cannot be all the same digit - at least one digit must be different from the other
    *       digits.</li>
    * </ul>
+   *
+   * @param args array of String values that serve as input to the application as program arguments
    * @throws IllegalArgumentException when the input String value violates any of the rules for a good input value
    * for finding Kaprekar's Constant
    */
