@@ -1,8 +1,8 @@
-# Kaprekar's Constant #
+# Kaprekar's Constant
 
-## Getting Started ##
+## Getting Started
 
-### Prerequisites ###
+### Prerequisites
 
 This project is built on Java 17, but it is compatible with Java 11
 as well. There is nothing specific in this project that is later
@@ -11,7 +11,7 @@ than Java 11.
 The program takes only one program argument - a four digit integer
 with at least two different digits that comprise the number.
 
-### Executing This Program ###
+### Executing This Program
 
 Change your directory to the root of the project and then perform
 the following commands.
@@ -20,7 +20,7 @@ the following commands.
 * `.\gradle.bat clean jar` (if you are in a Windows environment)
 * `java -jar build/libs/kaprekars-constant-1.0.jar 1234`
 
-### Additional Things to Know ###
+### Additional Things to Know
 
 * `./gradlew clean jar sourceJar javadocJar test` will build the
   executable JAR file as well as the sources JAR file and the
@@ -48,23 +48,32 @@ the following commands.
   argument like `1234`. Then execute that configuration to your
   heart's content changing the program argument value as you please.
 
-## Why write this thing? ##
+## Why write this thing?
 
 When I learned about Kaprekar's Constant, it seemed like a fun
 algorithm to develop. Creating numbers that order the digits from
 largest to smallest and then from  smallest to largest immediately
 seemed like an interesting challenge.
 
-One way to do it would be to use mathematical operations to extract
-each digit and then find some way to order those digits, but those
-mathematical operations might not be the best way to solve this
-problem.
+One way to do it is to use mathematical operations to extract each
+digit and then order those digits. This is provided by the
+`KaprekarsNumericCalculator` implementation class.
 
-Another way to do it would be to convert the integer to a String and
-use a [Java stream](https://www.baeldung.com/java-8-streams-introduction)
+Another way to do it is to convert the integer to a sequence of the
+characters that represent the digits in the number and use a
+[Java stream](https://www.baeldung.com/java-8-streams-introduction)
 to go over all the individual characters of the String and order
-them. Java streams have a wonderful built-in mechanism to perform
-this kind of ordering/sorting.
+them. This implementation is provided by the
+`KaprekarsStringCalculator` class.
+
+It is worthwhile noting that while both implementation classes use
+Java streams to reorder the digits in each computed integer, the
+numeric implementation does the ordering only once whereas the
+String implementation does it twice, but is able to take advantage
+of the `Comparator` class in the base JDK to indicate desired
+ordering of the digits in the resulting number.
+
+### The Parts of a Subtraction Operation
 
 This problem also presents the opportunity to learn the various
 parts of a basic subtraction operation:
@@ -73,10 +82,27 @@ parts of a basic subtraction operation:
 * The subtrahend
 * The difference
 
-It was particularly interesting examining how to convert between a
-Java `Character` instance and the `String` object to represent that
-character. The back and forth isn't quite as straightforward as it
-might seem at first glance.
+### The Numeric Implementation
+
+There wasn't nearly the amount of converting back and forth between
+`int` and `String` as the String implementation had, but there
+seemed to be other efficiencies, too, working only numerically to
+get the minuend and subtrahend values.
+
+We had to stream only once to get both the minuend and subtrahend
+for each number in the algorithm because the only sorting allowed on
+an `IntStream` is the natural ordering. So the resulting array has
+the digits in sorted order and getting the most significant and
+least significant digits was only an issue of indexing on the array
+of sorted digits.
+
+### The String Implementation
+
+The String implementation of this algorithm also presented some
+interesting learning opportunities. It was particularly interesting
+examining how to convert between a Java `Character` instance and the
+`String` object to represent that character. The back and forth
+isn't quite as straightforward as it might seem at first glance.
 
 Conversion between `String` and `int` objects was crucial for this
 exercise. When differences less than a thousand are computed, it is
@@ -91,7 +117,7 @@ leading zeros) was important, but also converting the `String` to
 returning the resulting difference between the computed minuend and
 subtrahend.
 
-## References and Online Resources ##
+## References and Online Resources
 
 * [Subtraction Symbol and Parts](https://byjus.com/maths/subtraction/#Subtraction-Meaning)
 * [6174 on Wikipedia](https://en.wikipedia.org/wiki/6174)

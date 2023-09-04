@@ -10,9 +10,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class KaprekarsCalculatorTest {
+class KaprekarsNumericCalculatorTest {
 
-  final KaprekarsCalculator calculator = new KaprekarsCalculator();
+  final KaprekarsCalculator calculator = new KaprekarsNumericCalculator();
 
   @ParameterizedTest(name = "Starting input value is {0}")
   @MethodSource("badInputValues")
