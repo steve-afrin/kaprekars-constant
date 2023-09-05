@@ -8,8 +8,9 @@ This project is built on Java 17, but it is compatible with Java 11
 as well. There is nothing specific in this project that is later
 than Java 11.
 
-The program takes only one program argument - a four digit integer
-with at least two different digits that comprise the number.
+The program takes an arbitrary number of program arguments. Each
+argument must be a four digit integer with at least two different
+digits that comprise the number.
 
 ### Executing This Program
 
@@ -18,7 +19,7 @@ the following commands.
 
 * `./gradlew clean jar` (if you are in a linux environment)
 * `.\gradle.bat clean jar` (if you are in a Windows environment)
-* `java -jar build/libs/kaprekars-constant-1.0.jar 1234`
+* `java -jar build/libs/kaprekars-constant-1.0.jar 1234 1110 6789`
 
 ### Additional Things to Know
 
@@ -43,10 +44,16 @@ the following commands.
     * Without the dependent libraries the base program cannot
       successfully execute.
 
+* The computation to find Kaprekar's Constant for each argument will
+  be done twice, once by each of two different implementations, and
+  the results of the timing for execution of both implementations
+  will be reported.
+
 * If you want to run the program within an IDE, create a
-  configuration to run the `home.Main` class and provide a program
-  argument like `1234`. Then execute that configuration to your
-  heart's content changing the program argument value as you please.
+  configuration to run the `home.Main` class and provide program
+  arguments like `1234 1110 6789`. Then execute that configuration
+  to your heart's content changing the program argument value as you
+  please.
 
 ## Why write this thing?
 
