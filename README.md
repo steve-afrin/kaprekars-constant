@@ -35,7 +35,7 @@ the following commands.
   a _fat_ JAR or _uber_ JAR. This simply means that the executable
   JAR file contains all the dependent libraries the program needs to
   do its job.
-    * This bloats the JAR file to 16.6 MB in size whereas without
+    * This bloats the JAR file to 16.5 MB in size whereas without
       the dependent libraries, the JAR file would be only 4 KB in
       size.
     * The actual program is very small, but the dependent libraries

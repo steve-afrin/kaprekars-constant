@@ -1,6 +1,5 @@
 package home;
 
-import java.text.NumberFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,7 +8,8 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
   private static final Logger LOG = LoggerFactory.getLogger(Main.class);
-  private static final NumberFormat INTEGER_FORMATTER = NumberFormat.getIntegerInstance();
+  private static final float ONE_MILLION = 1_000_000F;
+  private static final String FINAL_REPORT_MESSAGE = "The {} calculator found Kaprekar's Constant from {} in {} milliseconds.";
 
   private static final KaprekarsCalculator NUMERIC_CALCULATOR = new KaprekarsNumericCalculator();
   private static final KaprekarsCalculator STRING_CALCULATOR = new KaprekarsStringCalculator();
@@ -55,11 +55,13 @@ public class Main {
     final var numericComputationTime = numericCalculatorEndTime - numericCalculatorStartTime;
     final var stringComputationTime = stringCalculatorEndTime - stringCalculatorStartTime;
 
-    LOG.info("The Numeric calculator found Kaprekar's Constant from {} in {} nanoseconds.",
+    LOG.info(FINAL_REPORT_MESSAGE,
+        "Numeric",
         argument,
-        INTEGER_FORMATTER.format(numericComputationTime));
-    LOG.info("The String calculator found Kaprekar's Constant from {} in {} nanoseconds.",
+        String.format("%1.4f", numericComputationTime / ONE_MILLION));
+    LOG.info(FINAL_REPORT_MESSAGE,
+        "String",
         argument,
-        INTEGER_FORMATTER.format(stringComputationTime));
+        String.format("%1.4f", stringComputationTime / ONE_MILLION));
   }
 }
