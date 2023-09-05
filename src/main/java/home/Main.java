@@ -26,24 +26,24 @@ public class Main {
    * for finding Kaprekar's Constant
    */
   public static void main(final String[] args) {
-    final var calculator1 = new KaprekarsNumericCalculator();
-    final var calculator2 = new KaprekarsStringCalculator();
+    final var numericCalculator = new KaprekarsNumericCalculator();
+    final var stringCalculator = new KaprekarsStringCalculator();
 
-    final var startTime1 = System.currentTimeMillis();
-    calculator1.findKaprekarsConstant(calculator1.isValidStartingNumber(args[0]));
-    final var endTime1 = System.currentTimeMillis();
+    final var numericCalculatorStartTime = System.nanoTime();
+    numericCalculator.findKaprekarsConstant(numericCalculator.isValidStartingNumber(args[0]));
+    final var numericCalculatorEndTime = System.nanoTime();
 
-    final var startTime2 = System.currentTimeMillis();
-    calculator2.findKaprekarsConstant(calculator2.isValidStartingNumber(args[0]));
-    final var endTime2 = System.currentTimeMillis();
+    final var stringCalculatorStartTime = System.nanoTime();
+    stringCalculator.findKaprekarsConstant(stringCalculator.isValidStartingNumber(args[0]));
+    final var stringCalculatorEndTime = System.nanoTime();
 
-    final var numericComputationTime = endTime1 - startTime1;
-    final var stringComputationTime = endTime2 - startTime2;
+    final var numericComputationTime = numericCalculatorEndTime - numericCalculatorStartTime;
+    final var stringComputationTime = stringCalculatorEndTime - stringCalculatorStartTime;
 
-    LOG.info("The Numeric calculator found Kaprekar's Constant from {} in {} milliseconds.",
+    LOG.info("The Numeric calculator found Kaprekar's Constant from {} in {} nanoseconds.",
         args[0],
         INTEGER_FORMATTER.format(numericComputationTime));
-    LOG.info("The String calculator found Kaprekar's Constant from {} in {} milliseconds.",
+    LOG.info("The String calculator found Kaprekar's Constant from {} in {} nanoseconds.",
         args[0],
         INTEGER_FORMATTER.format(stringComputationTime));
   }
